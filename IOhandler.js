@@ -5,6 +5,11 @@
  * 
  * Created Date: November 7th, 2020 
  * Author: Adam Hatem Siyala
+ 
+ So in my read Directory function, I understood that I need to read each png image so I can prepare it to be grayscaled.
+ I started with a promise to make it easier for myself in the future and I put the fs.readDir inside the promise (as it should be)
+ the path it will take is "dir" and it will be utf-8, with an error and filename callback. If all is successful the program should run effectively. 
+ Otherwise, it will produce an error.
  * 
  */
 
