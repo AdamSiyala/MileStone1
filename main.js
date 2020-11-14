@@ -22,6 +22,9 @@ IOhandler.unzip(zipFilePath, pathUnzipped).then(()=>{
           if(path.extname(name) === ".png") grayScale(pathUnzipped+ "/" + name, pathProcessed);
           else console.log("Error:one of the files is not the correct filetype")
       });
+    .catch(err =>{
+    console.log(err)
+  })
   })
 })
 
