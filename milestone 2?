@@ -1,0 +1,30 @@
+const http = require('http');
+const formidable = require('formidable');
+const path = require('path')
+const server = http.createServer((req, res) => {
+  if (req.url === '/api/upload' && req.method.toLowerCase() === 'post') {
+    // parse a file upload
+    const form = formidable({ multiples: true ,uploadDir:path.join(__dirname,"upload")});
+ 
+    form.parse(req, (err, fields, files) => {
+      res.writeHead(200, { 'content-type': 'text/html' });
+      res.write("<h1>File has been converted. AwesomeSauce</h1>")
+      res.end(JSON.stringify({ fields, files }, null, 2));
+    });
+ 
+    return;
+  }
+  // show a file upload form
+  res.writeHead(200, { 'content-type': 'text/html' });
+  res.end(`
+    <h2>My photo album</h2>
+    <form action="/api/upload" enctype="multipart/form-data" method="post">
+      <div>File: <input type="file" name="multipleFiles" multiple="multiple" /></div> <br>
+      <input type="submit" value="Upload" />
+    </form>
+  `);
+});
+ 
+server.listen(218, () => {
+  console.log('Server listening on http://localhost:218/ ...');
+});
